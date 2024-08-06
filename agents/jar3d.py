@@ -124,7 +124,8 @@ class Jar3d(BaseAgent[State]):
         user_input = state.get("user_input")
 
         system_prompt = self.get_prompt()
-        user_input = f"previous conversation: {history}\n {system_prompt}\n cogor {user_input}"
+        if state.get('chat_limit') is not None:
+            user_input = f"previous conversation: {history}\n {system_prompt}\n cogor {user_input}"
 
         while True:
             # history = self.get_conv_history(state)
